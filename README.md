@@ -28,3 +28,9 @@ to the console. On Chrome and Firefox, you can visit `table.html?showReport`
 to have the page replaced with report-in-a-table; this doesn't work on Safari or
 Edge because the automated scroll relies on the CSS feature
 `scroll-behavior: smooth`.
+
+## Sample Chrome and Firefox Results
+
+![Chrome result](/screenshots/scroll_perf_chrome.png "Chrome").
+
+![Firefox result](/screenshots/scroll_perf_firefox.png "Firefox").
