@@ -31,6 +31,10 @@ Edge because the automated scroll relies on the CSS feature
 
 ## Sample Chrome and Firefox Results
 
+### Chrome
+
 ![Chrome result](/screenshots/scroll_perf_chrome.png "Chrome").
+
+### Firefox
 
 ![Firefox result](/screenshots/scroll_perf_firefox.png "Firefox").
