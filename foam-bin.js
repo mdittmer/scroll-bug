@@ -7586,7 +7586,7 @@ foam.__context__ = foam.core.Window.create(
 foam.CLASS({
   package: 'foam.core.internal',
   name: 'ContextMultipleInheritence',
-  
+
   exports: [
     'createSubContext'
   ],
@@ -9770,7 +9770,7 @@ foam.CLASS({
           opt_class = foam.lookup(opt_class);
         return this.objectify(root, opt_class);
       }
-      
+
       throw new Error('Class not provided');
     },
 
@@ -9922,7 +9922,7 @@ foam.CLASS({
 
     function sanitizeHeaderTitle(t) {
       // Sanitizes header title by replacing the nested object seperator, by itself x 2
-      return this.replaceAll(t, this.nestedObjectSeperator, 
+      return this.replaceAll(t, this.nestedObjectSeperator,
                     this.nestedObjectSeperator + this.nestedObjectSeperator);
     },
 
@@ -9963,7 +9963,7 @@ foam.CLASS({
         // Escapes inner quotes by adding another quote char (Google Sheets strategy)
         source = '"' + this.replaceAll(source, '"', '""') + '"';
       }
-      
+
       return source;
     },
 
@@ -9978,14 +9978,14 @@ foam.CLASS({
             o.outputCSV(this)
             return;
           }
-          
+
           var ps = o.cls_.getAxiomsByClass(foam.core.Property);
 
           for ( var i = 0 ; i < ps.length ; i++ ) {
             this.outputProperty(o, ps[i], (i == 0 && first));
           }
         },
-        Array:  function(o, opt_cls) { 
+        Array:  function(o, opt_cls) {
           var cls = this.getCls(opt_cls);
           for ( var i = 0 ; i < o.length ; i++ ) {
             this.output(o[i], cls);
@@ -10061,9 +10061,9 @@ foam.CLASS({
             if ( ( j == props.length ) || ( props[j][0] != prefix ) ) {
               // Creates a new model for the inner object
               var prop = model.cls_.getAxiomByName(p[0]);
-              prop.set(model, this.createModel(props.slice(i, j).map(nestedProp => nestedProp.slice(1)), 
+              prop.set(model, this.createModel(props.slice(i, j).map(nestedProp => nestedProp.slice(1)),
                                           values.slice(i, j), prop.of));
-              
+
               i = j - 1;
               break;
             }
@@ -10111,7 +10111,7 @@ foam.LIB({
 foam.CLASS({
   package: 'foam.lib.csv',
   name: 'CSVParser',
-  
+
   requires: [
     'foam.parse.ImperativeGrammar'
   ],
@@ -10130,8 +10130,8 @@ foam.CLASS({
       factory: function() {
         var X = this.X;
         var self = this;
-        
-        return this.ImperativeGrammar.create({ 
+
+        return this.ImperativeGrammar.create({
           symbols: function(alt, anyChar, literal, literalIC, not, notChars, optional,
           plus, range, repeat, repeat0, seq, seq1, str, sym) {
             return {
@@ -10170,8 +10170,8 @@ foam.CLASS({
       factory: function() {
         var X = this.X;
         var self = this;
-        
-        return this.ImperativeGrammar.create({ 
+
+        return this.ImperativeGrammar.create({
           symbols: function(alt, anyChar, literal, literalIC, not, notChars, optional,
           plus, range, repeat, repeat0, seq, seq1, str, sym) {
             return {
@@ -10206,7 +10206,7 @@ foam.CLASS({
       this.delimiter = delimiter;
       return this.stringParser.parseString(str);
     },
-    
+
     function parseHeader(str, nestedObjectSeperator) {
       this.nestedObjectSeperator = nestedObjectSeperator;
       return this.headerParser.parseString(str);
@@ -10214,7 +10214,7 @@ foam.CLASS({
 
     function recoverHeaderTitle(t) {
       // Recovers header title by replacing the nested object seperator x 2, by itself
-      return t.replace(new RegExp(this.nestedObjectSeperator + this.nestedObjectSeperator, 'g'), 
+      return t.replace(new RegExp(this.nestedObjectSeperator + this.nestedObjectSeperator, 'g'),
                 this.nestedObjectSeperator);
     }
   ]
@@ -24760,7 +24760,7 @@ foam.CLASS({
       return Promise.all(
           sources.map(this.getDatumForTarget.bind(this, target)));
     },
-    
+
     function getDatumForTarget(target, source) {
       return this.junctionDAO.where(this.AND(
           this.EQ(this.junctionCls.SOURCE_ID, source.id),
@@ -29286,7 +29286,7 @@ foam.CLASS({
   package: 'foam.blob',
   name: 'IdentifiedBlob',
   extends: 'foam.blob.ProxyBlob',
-  
+
   imports: [
     'blobService'
   ],
@@ -29754,7 +29754,7 @@ foam.CLASS({
                              this.BlobBlob.create({ blob: this.blobs[id] }) :
                              null);
     },
-    
+
     function urlFor_(x, blob) {
       if ( this.IdentifiedBlob.isInstance(blob) ) {
         return URL.createObjectURL(this.blobs[blob.id]);
@@ -38971,7 +38971,7 @@ foam.CLASS({
   documentation: 'View for editing Float Properties.',
 
   css: '^:read-only { border: none; background: rgba(0,0,0,0); }',
-   
+
   properties: [
     [ 'type', 'number' ],
     { class: 'Float', name: 'data' },
@@ -39084,18 +39084,18 @@ foam.CLASS({
   documentation: 'Checkbox View.',
 
   properties: [
-    { 
-      class: 'Boolean', 
-      name: 'data' 
+    {
+      class: 'Boolean',
+      name: 'data'
     },
     {
       class: 'Boolean',
       name: 'showLabel',
       factory: function() { return !!this.label },
     },
-    { 
-      class: 'String', 
-      name: 'label' 
+    {
+      class: 'String',
+      name: 'label'
     }
   ],
 
@@ -39104,13 +39104,13 @@ foam.CLASS({
       this.SUPER();
       this.setAttribute('type', 'checkbox');
 
-      if ( this.showLabel ) { 
+      if ( this.showLabel ) {
         this.start('label')
           .addClass(this.myClass('label'))
           .addClass(this.myClass('noselect'))
           .add(this.label$)
-          .on('click', function() { 
-            this.data = !this.data; 
+          .on('click', function() {
+            this.data = !this.data;
           }.bind(this))
         .end();
       }
@@ -39865,7 +39865,7 @@ foam.CLASS({
     'data',
     'historyItemView'
   ],
-  
+
   messages: [
     { name: 'title', message: 'History' }
   ],
@@ -41692,7 +41692,7 @@ foam.CLASS({
     }
   ]
 });
-/** 
+/**
  * @license
  * Copyright 2017 The FOAM Authors. All Rights Reserved.
  * http://www.apache.org/licenses/LICENSE-2.0
@@ -41726,7 +41726,7 @@ foam.CLASS({
       value: false
     }
   ],
-  
+
   methods: [
     function initE() {
       // if ( this.displaySorted ) {
@@ -42312,7 +42312,7 @@ foam.CLASS({
           height: '1px',
           position: 'absolute',
           transform: this.sentinelTransform_$
-        });
+        }).entity('nbsp');
       },
       transient: true
     },
@@ -43028,8 +43028,8 @@ foam.CLASS({
 
   documentation: 'Top navigation bar',
 
-  imports: [ 
-    'menuDAO', 
+  imports: [
+    'menuDAO',
     'user',
     'logo'
   ],
@@ -43081,7 +43081,7 @@ foam.CLASS({
           overflow: auto;
           white-space: nowrap;
           margin-left: 60px;
-        }          
+        }
       */}
     })
   ],
@@ -43186,7 +43186,7 @@ foam.CLASS({
 
   documentation: 'View user name and user nav settings',
 
-  imports: [ 
+  imports: [
     'user',
     'window'
   ],
@@ -43212,8 +43212,8 @@ foam.CLASS({
           bottom: 5;
         }
         ^carrot {
-          width: 0; 
-          height: 0; 
+          width: 0;
+          height: 0;
           border-left: 5px solid transparent;
           border-right: 5px solid transparent;
           border-top: 5px solid white;
@@ -43539,7 +43539,7 @@ foam.CLASS({
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 foam.CLASS({
   package: 'foam.u2.tag',
   name: 'Card',
@@ -47229,7 +47229,7 @@ foam.CLASS({
   package: 'foam.comics',
   name: 'InlineDAOControllerView',
   extends: 'foam.comics.DAOControllerView',
-  
+
   methods: [
     function initE() {
       this.
@@ -47708,7 +47708,7 @@ foam.CLASS({
   package: 'foam.comics',
   name: 'RelationshipView',
   extends: 'foam.comics.InlineBrowserView',
-  
+
   properties: [
     {
       name: 'controller',
@@ -47740,12 +47740,12 @@ foam.CLASS({
     ^ {
       height: auto;
     }
-    
+
     ^ .address-container{
       background: white;
       padding: 4px 25px;
       margin-bottom: 20px;
-    } 
+    }
     ^ .input-container-half{
       width: 46%;
       display: inline-block;
@@ -47804,7 +47804,7 @@ foam.CLASS({
       margin-top: 10px;
     }
 
-    
+
     ^ p{
       font-size: 10px;
       color: #093649;
@@ -47896,7 +47896,7 @@ foam.CLASS({
           .start().addClass('input-container-half')
             .start('label').add('Province').end()
             .start(this.Address.REGION_ID).end()
-          .end()    
+          .end()
           .start().addClass('input-container-half')
             .start('label').add('Postal Code').end()
             .start(this.Address.POSTAL_CODE).end()
@@ -48834,9 +48834,9 @@ foam.CLASS({
               .on('click', self.signUp)
             .end()
           })
-          .start('p').style({ 'margin-left': '150px' }).addClass('forgot-link')		
-            .add("Forgot Password?")		
-            .on('click', function(){ self.stack.push({ class: 'foam.nanos.auth.resetPassword.EmailView' })})		
+          .start('p').style({ 'margin-left': '150px' }).addClass('forgot-link')
+            .add("Forgot Password?")
+            .on('click', function(){ self.stack.push({ class: 'foam.nanos.auth.resetPassword.EmailView' })})
           .end()
         .end()
       .end();
@@ -50018,7 +50018,7 @@ foam.CLASS({
 
   documentation: 'Contains an array of property updates',
   ids: [ 'objectId', 'seqNo' ],
-  
+
   properties: [
     {
       class: 'Long',
